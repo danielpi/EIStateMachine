@@ -40,8 +40,10 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 {
     if ([self.state respondsToSelector:aSelector]) {
         return [(NSObject*)self.state methodSignatureForSelector:aSelector];
-    } else {
+    } else if ([super respondsToSelector:aSelector]) {
         return [super methodSignatureForSelector:aSelector];
+    } else {
+        return [super methodSignatureForSelector:@selector(unhandledMethodSignature)];
     }
 }
 
@@ -53,9 +55,7 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
         [anInvocation invokeWithTarget:self.state];
     } else {
         // silently ignore.
-        // TODO: debug print this
-        printf("Unrecognised selector");
-        // Why doesn't this stop the unrecognized selector excepion from being thrown?
+        NSLog(@"Unrecognised Selector");
     }
 }
 
@@ -80,7 +80,8 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
     
     NSLog(@"%@ -> %@", _state, self.nextState);
     _state = self.nextState;
-    [_state runOnEntry];
+    [_state performSelector:@selector(runOnEntry) withObject:nil afterDelay:0];
+    //[_state runOnEntry];
     
     if (self.state) {
         [nc postNotificationName:StateMachineDidEnterStateNotification
@@ -90,6 +91,10 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 
 }
 
+-(void) unhandledMethodSignature
+{
+    return;
+}
 
 @end
 
