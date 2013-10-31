@@ -649,21 +649,23 @@
         <window title="EIStateMachineExample" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="357" height="194"/>
+            <rect key="contentRect" x="335" y="390" width="458" height="194"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <value key="minSize" type="size" width="458" height="194"/>
+            <value key="maxSize" type="size" width="458" height="194"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="357" height="194"/>
+                <rect key="frame" x="0.0" y="0.0" width="458" height="194"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Turnstile" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Nwl-JZ-boh">
-                        <rect key="frame" x="17" y="18" width="323" height="156"/>
+                        <rect key="frame" x="17" y="18" width="424" height="156"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="321" height="140"/>
+                            <rect key="frame" x="1" y="1" width="422" height="140"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rrh-Li-NtS">
-                                    <rect key="frame" x="97" y="14" width="126" height="47"/>
+                                    <rect key="frame" x="16" y="14" width="390" height="47"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Unlocked" id="naV-Uf-gkt">
                                         <font key="font" size="27" name="NanumGothicBold"/>
@@ -672,7 +674,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dq0-rH-akI">
-                                    <rect key="frame" x="181" y="89" width="128" height="32"/>
+                                    <rect key="frame" x="140" y="89" width="128" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Insert Coin" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SlT-VO-adT">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -712,12 +714,23 @@
                                     </textFieldCell>
                                 </textField>
                                 <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WQH-Bm-dtu">
-                                    <rect key="frame" x="14" y="76" width="293" height="5"/>
+                                    <rect key="frame" x="14" y="76" width="394" height="5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
+                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZuD-fp-66d">
+                                    <rect key="frame" x="268" y="89" width="142" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Send Repairman" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vbb-10-P7F">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="sendRepairMan:" target="494" id="Kv5-7v-HOn"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

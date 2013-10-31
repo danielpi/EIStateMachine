@@ -20,8 +20,10 @@ extern NSString* StateMachineDidEnterStateNotification;
 @property (nonatomic, retain, readwrite) BaseState *nextState;
 @property (atomic, retain, readwrite) NSTimer *timer;
 
--(void) changeState;
--(void) unhandledMethodSignature;
+- (void) changeState;
+- (void) setTimeOutWithTimeInterval:(NSTimeInterval)timeInterval;
+- (void) restartTimeOutWithTimeInterval:(NSTimeInterval)timeInterval;
+- (void) unhandledMethodSignature;
 
 @end
 

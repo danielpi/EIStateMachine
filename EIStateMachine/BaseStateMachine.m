@@ -62,7 +62,7 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 #pragma mark - Property accessors
 
 
--(void) changeState
+- (void) changeState
 {
     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
     
@@ -78,6 +78,8 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
                         userInfo:@{@"fromState":self.state, @"toState":self.nextState}];
     }
     
+    [self.timer invalidate];
+    
     NSLog(@"%@ -> %@", _state, self.nextState);
     _state = self.nextState;
     [_state performSelector:@selector(runOnEntry) withObject:nil afterDelay:0];
@@ -91,7 +93,18 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 
 }
 
--(void) unhandledMethodSignature
+- (void) setTimeOutWithTimeInterval:(NSTimeInterval)timeInterval
+{
+    [self.timer invalidate];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval
+                                                  target:self
+                                                selector:@selector(timeOut)
+                                                userInfo:nil
+                                                 repeats:NO];
+}
+
+- (void) unhandledMethodSignature
 {
     return;
 }

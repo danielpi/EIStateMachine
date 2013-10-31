@@ -19,5 +19,6 @@
 
 - (IBAction)pushTurnstile:(id)sender;
 - (IBAction)insertCoin:(id)sender;
+- (IBAction)sendRepairMan:(id)sender;
 
 @end

@@ -28,6 +28,10 @@
     [(Locked *)self.turnstile insertCoin];
 }
 
+- (IBAction)sendRepairMan:(id)sender {
+    [self.turnstile sendRepairman];
+}
+
 
 #pragma mark TurnstileStateMachineDelegateMethods
 - (void) didChangeState
@@ -36,7 +40,9 @@
         [self.stateLabel setStringValue:@"Unlocked"];
     } else if ([_turnstile.state isKindOfClass:[Locked class]]){
         [self.stateLabel setStringValue:@"Locked"];
-    } else {
+    } else if ([_turnstile.state isKindOfClass:[Broken class]]){
+        [self.stateLabel setStringValue:@"Broken"];
+    } else if ([_turnstile.state isKindOfClass:[OutOfOrder class]]){
         [self.stateLabel setStringValue:@"Out of Order"];
     }
 }

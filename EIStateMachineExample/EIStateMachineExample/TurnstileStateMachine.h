@@ -19,6 +19,9 @@
 
 @class Locked;
 @class Unlocked;
+@class Broken;
+@class OutOfOrder;
+
 
 
 @interface TurnstileStateMachine : BaseStateMachine
@@ -27,6 +30,10 @@
 
 @property (nonatomic, readonly) Locked *lockedState;
 @property (nonatomic, readonly) Unlocked *unlockedState;
+@property (nonatomic, readonly) Broken *brokenState;
+@property (nonatomic, readonly) OutOfOrder *outOfOrderState;
+
+- (void) sendRepairman;
 
 @end
 
@@ -38,4 +45,13 @@
 
 @interface Unlocked : BaseState
 - (void) pushTurnstile;
+@end
+
+
+@interface Broken : BaseState
+
+@end
+
+
+@interface OutOfOrder : BaseState
 @end
