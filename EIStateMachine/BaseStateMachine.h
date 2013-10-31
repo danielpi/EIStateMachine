@@ -30,6 +30,7 @@ extern NSString* StateMachineDidEnterStateNotification;
 
 @interface BaseState : NSObject
 @property (nonatomic, weak) BaseStateMachine * machine;
-- (id)initWithStateMachine:(BaseStateMachine *)machine;
-- (void)runOnEntry;
+- (id) initWithStateMachine:(BaseStateMachine *)machine;
+- (void) runOnEntry;
+- (void) timeOut;
 @end
