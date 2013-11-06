@@ -20,7 +20,36 @@ With this library you end up creating a state machine object of your own design.
 
 
 In order to roll your own state machine you need to provide the following
-- Create your machine class as a subclass of EIBaseStateMachine
-- For each possible state create a subclass of EIBaseState that conforms to the EIBaseStateProtocol.
+- Create your machine class as a subclass of EIStateMachine
+- For each possible state create a subclass of EIState that conforms to the EIStateProtocol.
+
+Usually you will put both the EIStateMachine subclass and all of the EIState classes into the one, MyStateMachine.h/.m file pair. From your controller object in your project you then create an instance of MyStateMachine and proceed to send it messages from the rest of your application. 
 
 ## Example Project
+As a way of demonstrating the library I implemented an extended version of the turnstile example from [wikipedia] [1].
+
+	[1]: http://en.wikipedia.org/wiki/Finite-state_machine	"wikipedia"
+
+The basic turnstile state machine has two states, Locked and Unlocked. Inserting a coin when Locked transitions to the Unlocked state. Pushing on the turnstile when Unlocked transitions to the Locked state. Any other combination of event and state yields no action.
+
+I added to this machine states for when the turnstile is Brocken and Out Of Order e.g. being repaired. When you push on the turnstile there is a 30% chance that it will break. At any time you can send a repairman to service the turnstile which will place it in the Out Of Order state until he has finished his work (a 5 second timer function). The diagram for the state machine is shown below.
+
+![Example project State Diagram](/Users/danielpi/repos/EIStateMachine/README assets/Example State Diagram.pdf).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

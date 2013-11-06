@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EIBaseStateMachine.h"
+#import "EIStateMachine.h"
 
 
 @class Locked;
@@ -16,7 +16,7 @@
 @class OutOfOrder;
 
 
-@interface TurnstileStateMachine : EIBaseStateMachine
+@interface TurnstileStateMachine : EIStateMachine
 
 @property (nonatomic, readonly) Locked *lockedState;
 @property (nonatomic, readonly) Unlocked *unlockedState;
@@ -28,19 +28,19 @@
 @end
 
 
-@interface Locked : EIBaseState <EIBaseStateProtocol>
+@interface Locked : EIState <EIStateProtocol>
 - (void) insertCoin;
 @end
 
 
-@interface Unlocked : EIBaseState <EIBaseStateProtocol>
+@interface Unlocked : EIState <EIStateProtocol>
 - (void) pushTurnstile;
 @end
 
 
-@interface Broken : EIBaseState <EIBaseStateProtocol>
+@interface Broken : EIState <EIStateProtocol>
 @end
 
 
-@interface OutOfOrder : EIBaseState <EIBaseStateProtocol>
+@interface OutOfOrder : EIState <EIStateProtocol>
 @end

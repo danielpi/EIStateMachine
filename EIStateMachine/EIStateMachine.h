@@ -12,14 +12,14 @@ extern NSString* StateMachineWillExitStateNotification;
 extern NSString* StateMachineWillChangeStateNotification;
 extern NSString* StateMachineDidEnterStateNotification;
 
-@class EIBaseStateMachine;
+@class EIStateMachine;
 
 
-@protocol EIBaseStateProtocol <NSObject>
+@protocol EIStateProtocol <NSObject>
 
-@property (nonatomic, weak) EIBaseStateMachine * machine;
+@property (nonatomic, weak) EIStateMachine * machine;
 
-- (id) initWithStateMachine:(EIBaseStateMachine *)machine;
+- (id) initWithStateMachine:(EIStateMachine *)machine;
 - (void) performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay;
 @optional
 - (void) runOnEntry;
@@ -28,20 +28,20 @@ extern NSString* StateMachineDidEnterStateNotification;
 @end
 
 
-@interface EIBaseState : NSObject <EIBaseStateProtocol>
+@interface EIState : NSObject <EIStateProtocol>
 
-@property (nonatomic, weak) EIBaseStateMachine * machine;
+@property (nonatomic, weak) EIStateMachine * machine;
 
-- (id) initWithStateMachine:(EIBaseStateMachine *)machine;
+- (id) initWithStateMachine:(EIStateMachine *)machine;
 
 @end
 
 
 
-@interface EIBaseStateMachine : NSObject
+@interface EIStateMachine : NSObject
 
-@property (nonatomic, retain, readonly) id <EIBaseStateProtocol> state;
-@property (nonatomic, retain, readwrite) id <EIBaseStateProtocol> nextState;
+@property (nonatomic, retain, readonly) id <EIStateProtocol> state;
+@property (nonatomic, retain, readwrite) id <EIStateProtocol> nextState;
 @property (atomic, retain, readwrite) NSTimer *timer;
 
 - (void) changeState;

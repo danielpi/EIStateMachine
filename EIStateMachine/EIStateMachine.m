@@ -6,16 +6,16 @@
 //  Copyright (c) 2012 Matt Connolly. All rights reserved.
 //
 
-#import "EIBaseStateMachine.h"
+#import "EIStateMachine.h"
 
 NSString* StateMachineWillExitStateNotification = @"state-machine.exit";
 NSString* StateMachineWillChangeStateNotification = @"state-machine.change";
 NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 
 
-@implementation EIBaseState
+@implementation EIState
 
-- (id)initWithStateMachine:(EIBaseStateMachine*)machine
+- (id)initWithStateMachine:(EIStateMachine*)machine
 {
     self = [super init];
     if (self) {
@@ -26,7 +26,7 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 @end
 
 
-@implementation EIBaseStateMachine
+@implementation EIStateMachine
 
 - (id)init
 {
