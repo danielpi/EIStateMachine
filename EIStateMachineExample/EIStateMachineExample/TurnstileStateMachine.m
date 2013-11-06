@@ -17,8 +17,6 @@
 {
     self = [super init];
     if (self) {
-        _delegate = nil;
-        
         _lockedState = [[Locked alloc] initWithStateMachine:self];
         _unlockedState = [[Unlocked alloc] initWithStateMachine:self];
         _brokenState = [[Broken alloc] initWithStateMachine:self];
@@ -26,7 +24,7 @@
         
          self.nextState = _lockedState;
         
-         srand(time(NULL));
+         srand((unsigned int)time(NULL));
     }
     
     return self;
@@ -43,21 +41,8 @@
 
 @implementation Locked
 
-- (void) runOnEntry
-{
-    if ([((TurnstileStateMachine*)self.machine).delegate respondsToSelector:@selector(didChangeState)])
-    {
-        [((TurnstileStateMachine*)self.machine).delegate didChangeState];
-    }
-}
-
 - (void) insertCoin
 {
-    if ([((TurnstileStateMachine*)self.machine).delegate respondsToSelector:@selector(didReceiveEvent)])
-    {
-        [((TurnstileStateMachine*)self.machine).delegate didReceiveEvent];
-    }
-    
     [self.machine setNextState:((TurnstileStateMachine*)self.machine).unlockedState];
     [self.machine changeState];
 }
@@ -69,11 +54,6 @@
 
 - (void) runOnEntry
 {
-    if ([((TurnstileStateMachine*)self.machine).delegate respondsToSelector:@selector(didChangeState)])
-    {
-        [((TurnstileStateMachine*)self.machine).delegate didChangeState];
-    }
-    
     [self.machine setTimeOutWithTimeInterval:3.0];
 }
 
@@ -87,11 +67,6 @@
     } else {
         [self.machine setNextState:((TurnstileStateMachine*)self.machine).lockedState];
         [self.machine changeState];
-    }
-    
-    if ([((TurnstileStateMachine*)self.machine).delegate respondsToSelector:@selector(didReceiveEvent)])
-    {
-        [((TurnstileStateMachine*)self.machine).delegate didReceiveEvent];
     }
 }
 
@@ -108,14 +83,6 @@
 
 @implementation Broken
 
-- (void) runOnEntry
-{
-    if ([((TurnstileStateMachine*)self.machine).delegate respondsToSelector:@selector(didChangeState)])
-    {
-        [((TurnstileStateMachine*)self.machine).delegate didChangeState];
-    }
-}
-
 @end
 
 
@@ -123,11 +90,6 @@
 
 - (void) runOnEntry
 {
-    if ([((TurnstileStateMachine*)self.machine).delegate respondsToSelector:@selector(didChangeState)])
-    {
-        [((TurnstileStateMachine*)self.machine).delegate didChangeState];
-    }
-    
     [self.machine setTimeOutWithTimeInterval:5.0];
 }
 

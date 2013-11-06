@@ -14,7 +14,10 @@
 {
     // Insert code here to initialize your application
     _turnstile = [[TurnstileStateMachine alloc] init];
-    [_turnstile setDelegate:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didChangeState)
+                                                 name:StateMachineDidEnterStateNotification
+                                               object:nil];
     [_turnstile changeState];
 }
 
@@ -28,7 +31,8 @@
     [(Locked *)self.turnstile insertCoin];
 }
 
-- (IBAction)sendRepairMan:(id)sender {
+- (IBAction)sendRepairMan:(id)sender
+{
     [self.turnstile sendRepairman];
 }
 

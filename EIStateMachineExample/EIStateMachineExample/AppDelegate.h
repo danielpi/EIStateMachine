@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "TurnstileStateMachine.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, TurnstileStateMachineDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

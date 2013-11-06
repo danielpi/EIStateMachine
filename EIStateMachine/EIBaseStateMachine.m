@@ -6,21 +6,34 @@
 //  Copyright (c) 2012 Matt Connolly. All rights reserved.
 //
 
-#import "BaseStateMachine.h"
+#import "EIBaseStateMachine.h"
 
 NSString* StateMachineWillExitStateNotification = @"state-machine.exit";
 NSString* StateMachineWillChangeStateNotification = @"state-machine.change";
 NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 
-@implementation BaseStateMachine
 
-@synthesize timer;
+@implementation EIBaseState
+
+- (id)initWithStateMachine:(EIBaseStateMachine*)machine
+{
+    self = [super init];
+    if (self) {
+        self.machine = machine;
+    }
+    return self;
+}
+@end
+
+
+@implementation EIBaseStateMachine
 
 - (id)init
 {
     self = [super init];
     if (self) {
         _state = nil;
+        _timer = nil;
     }
     return self;
 }
@@ -82,7 +95,10 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
     
     NSLog(@"%@ -> %@", _state, self.nextState);
     _state = self.nextState;
-    [_state performSelector:@selector(runOnEntry) withObject:nil afterDelay:0];
+    if ([_state respondsToSelector:@selector(runOnEntry)]) {
+        [_state performSelector:@selector(runOnEntry) withObject:nil afterDelay:0];
+    }
+    
     //[_state runOnEntry];
     
     if (self.state) {
@@ -107,25 +123,6 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 - (void) unhandledMethodSignature
 {
     return;
-}
-
-@end
-
-
-@implementation BaseState
-
-- (id)initWithStateMachine:(BaseStateMachine*)machine
-{
-    self = [super init];
-    if (self) {
-        self.machine = machine;
-    }
-    return self;
-}
-
-- (void)runOnEntry
-{
-    // Debug message to say we have entered a state
 }
 
 @end

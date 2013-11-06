@@ -7,14 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseStateMachine.h"
-
-
-@protocol TurnstileStateMachineDelegate
-@optional
-- (void) didChangeState;
-- (void) didReceiveEvent;
-@end
+#import "EIBaseStateMachine.h"
 
 
 @class Locked;
@@ -23,10 +16,7 @@
 @class OutOfOrder;
 
 
-
-@interface TurnstileStateMachine : BaseStateMachine
-
-@property (readwrite, weak) id delegate;
+@interface TurnstileStateMachine : EIBaseStateMachine
 
 @property (nonatomic, readonly) Locked *lockedState;
 @property (nonatomic, readonly) Unlocked *unlockedState;
@@ -38,20 +28,19 @@
 @end
 
 
-@interface Locked : BaseState
+@interface Locked : EIBaseState <EIBaseStateProtocol>
 - (void) insertCoin;
 @end
 
 
-@interface Unlocked : BaseState
+@interface Unlocked : EIBaseState <EIBaseStateProtocol>
 - (void) pushTurnstile;
 @end
 
 
-@interface Broken : BaseState
-
+@interface Broken : EIBaseState <EIBaseStateProtocol>
 @end
 
 
-@interface OutOfOrder : BaseState
+@interface OutOfOrder : EIBaseState <EIBaseStateProtocol>
 @end
