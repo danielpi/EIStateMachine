@@ -25,6 +25,48 @@ In order to roll your own state machine you need to provide the following
 
 Usually you will put both the EIStateMachine subclass and all of the EIState classes into the one, MyStateMachine.h/.m file pair. From your controller object in your project you then create an instance of MyStateMachine and proceed to send it messages from the rest of your application. 
 
+This is a rough template of the header file for your state machine
+
+
+    #import <Foundation/Foundation.h>
+    #import "EIStateMachine.h"
+    
+
+    @class State1;
+    @class State2;
+    
+
+    @interface MyStateMachine : EIStateMachine
+    @property (nonatomic, readonly) State1 *state1State;
+    @property (nonatomic, readonly) State2 *state2State;
+    @property (readwrite) NSString *otherStateIndependentProperties;
+	-(void) otherStateIndependentMethods:(id)aValue;
+    @end
+    
+    
+    @interface State1 : EIState <EIStateProtocol>
+    -(void) stateSpecificMethod:(NSString *)aString;
+    @end
+    
+    @interface State2 : EIState <EIStateProtocol>
+    @end
+    
+Note that each of the states needs to be set as a property of the state machine. You can create state independent properties and methods (these will be responded to and accessible from all states). States can declare their own methods and properties, these will only be accessible from within the specific state.
+
+
+
+### Accessing Machine variables from within a state
+There are some hoops that must be jumped through when accessing the state independent variables and methods from within a state. When you initialise a state within your Machines init method you need to provide it with a reference back to the machine itself. This is then accessible via the machine variable for each state. Now you can use this to reach the methods that are builtin to the EIStateMachine class such as
+
+	[self.machine setNextState:aState];
+    [self.machine changeState];
+
+Unfortunately this doesn't allow you to access the variable and methods that you defined in your own subclass of the EIStateMachine class. In order to reach these items you need to first cast the machine object to your own class.
+
+	[(MyStateMachine *)self.machine otherStateIndependentMethods:aValue];
+	
+
+
 ## Example Project
 As a way of demonstrating the library I implemented an extended version of the turnstile example from [wikipedia] [1].
 

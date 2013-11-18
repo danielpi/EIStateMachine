@@ -19,7 +19,7 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
 {
     self = [super init];
     if (self) {
-        self.machine = machine;
+        _machine = machine;
     }
     return self;
 }
