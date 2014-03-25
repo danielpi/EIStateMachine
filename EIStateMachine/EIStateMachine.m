@@ -93,7 +93,7 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
     
     [self.timer invalidate];
     
-    NSLog(@"%@ -> %@", _state, self.nextState);
+    NSLog(@"%@ (Previous:%@)", self.nextState, _state);
     _state = self.nextState;
     if ([_state respondsToSelector:@selector(runOnEntry)]) {
         [_state performSelector:@selector(runOnEntry) withObject:nil afterDelay:0];
