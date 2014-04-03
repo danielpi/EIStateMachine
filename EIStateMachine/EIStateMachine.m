@@ -34,6 +34,7 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
     if (self) {
         _state = nil;
         _timer = nil;
+        _mute = NO;
     }
     return self;
 }
@@ -68,7 +69,9 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
         [anInvocation invokeWithTarget:self.state];
     } else {
         // silently ignore.
-        NSLog(@"Unrecognised Selector");
+        if (!self.mute) {
+            NSLog(@"Unrecognised Selector");
+        }
     }
 }
 
@@ -93,7 +96,10 @@ NSString* StateMachineDidEnterStateNotification = @"state-machine.enter";
     
     [self.timer invalidate];
     
-    NSLog(@"%@ (Previous:%@)", self.nextState, _state);
+    if (!self.mute) {
+        NSLog(@"%@ (Previous:%@)", self.nextState, _state);
+    }
+    
     _state = self.nextState;
     if ([_state respondsToSelector:@selector(runOnEntry)]) {
         [_state performSelector:@selector(runOnEntry) withObject:nil afterDelay:0];

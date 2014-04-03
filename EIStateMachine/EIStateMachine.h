@@ -43,6 +43,7 @@ extern NSString* StateMachineDidEnterStateNotification;
 @property (nonatomic, retain, readonly) id <EIStateProtocol> state;
 @property (nonatomic, retain, readwrite) id <EIStateProtocol> nextState;
 @property (atomic, retain, readwrite) NSTimer *timer;
+@property (readwrite) BOOL mute;
 
 - (void) changeState;
 - (void) setTimeOutWithTimeInterval:(NSTimeInterval)timeInterval;
