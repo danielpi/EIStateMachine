@@ -76,7 +76,7 @@ The basic turnstile state machine has two states, Locked and Unlocked. Inserting
 
 I added to this machine states for when the turnstile is Brocken and Out Of Order e.g. being repaired. When you push on the turnstile there is a 30% chance that it will break. At any time you can send a repairman to service the turnstile which will place it in the Out Of Order state until he has finished his work (a 5 second timer function). The diagram for the state machine is shown below.
 
-![Example project State Diagram](https://github.com/danielpi/EIStateMachine/blob/master/README%20assets/Example%20State%20Diagram.pdf).
+![Example project State Diagram](https://raw.githubusercontent.com/danielpi/EIStateMachine/master/README%20assets/Example%20State%20Diagram.png).
 
 
 
