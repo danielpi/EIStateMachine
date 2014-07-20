@@ -68,9 +68,7 @@ Unfortunately this doesn't allow you to access the variable and methods that you
 
 
 ## Example Project
-As a way of demonstrating the library I implemented an extended version of the turnstile example from [wikipedia] [1].
-
-	[1]: http://en.wikipedia.org/wiki/Finite-state_machine	"wikipedia"
+As a way of demonstrating the library I implemented an extended version of the turnstile example from wikipedia, http://en.wikipedia.org/wiki/Finite-state_machine.
 
 The basic turnstile state machine has two states, Locked and Unlocked. Inserting a coin when Locked transitions to the Unlocked state. Pushing on the turnstile when Unlocked transitions to the Locked state. Any other combination of event and state yields no action.
 
